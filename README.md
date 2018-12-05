@@ -2,6 +2,8 @@ This repository is used to build Docker images for testing Mes Aides on CircleCI
 
 Basically, it creates Docker images with Node & Python.
 
+The images are deployed on [Docker Hub](https://hub.docker.com/r/betagouv/mes-aides-docker)
+
 Building Docker images manually
 -------------------------------
 
