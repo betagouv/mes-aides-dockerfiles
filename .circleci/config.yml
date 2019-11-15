@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            TAG=node8-python3.7 docker build --no-cache -t betagouv/mes-aides-docker:$TAG -f $TAG/Dockerfile .
+            docker build --no-cache --tag betagouv/mes-aides-docker:node8-python3.7 --file node8-python3.7/Dockerfile .
       # - run:
       #     name: Save Docker image layer cache
       #     command: |
