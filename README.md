@@ -27,7 +27,7 @@ mkdir node8-python3.7
 2. Generate a `Dockerfile` in this folder
 
 ```
-LINUX_VERSION=buster NODE_VERSION=8.16.1 PYTHON_VERSION=3.7.3 bin/generate.sh > node8-python3.7/Dockerfile
+FOLDER=node8-python3.7-cy LINUX_VERSION=buster NODE_VERSION=8.16.1 PYTHON_VERSION=3.7.3; mkdir $FOLDER && bin/generate.sh > node8-python3.7-cy/Dockerfile
 ```
 
 3. Push your changes
@@ -54,7 +54,7 @@ docker login --username=<username>
 2. Build the Docker image (may take a while)
 
 ```
-docker build --no-cache -t betagouv/mes-aides-docker:<tag> -f node8-python3.7/Dockerfile .
+TAG=node8-python3.7; docker build --no-cache -t betagouv/mes-aides-docker:$TAG -f $TAG/Dockerfile .
 ```
 
 3. Push the image to Docker Hub
