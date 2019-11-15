@@ -1,6 +1,6 @@
 This repository is used to build Docker images for testing [Mes Aides](https://github.com/betagouv/mes-aides-ui) on CircleCI.
 
-Basically, it creates Docker images with Node & Python.
+Basically, it creates Docker images with Node, Python & Cypress prerequisites.
 
 The images are deployed on [Docker Hub](https://hub.docker.com/r/betagouv/mes-aides-docker)
 
@@ -27,7 +27,7 @@ mkdir node8-python3.7
 2. Generate a `Dockerfile` in this folder
 
 ```
-LINUX_VERSION=buster NODE_VERSION=8.16.1 PYTHON_VERSION=3.7.3 bin/generate.sh > node8-python3.7/Dockerfile
+export FOLDER=node8-python3.7-cy LINUX_VERSION=buster NODE_VERSION=8.16.1 PYTHON_VERSION=3.7.3 && mkdir --parents $FOLDER && bin/generate.sh > $FOLDER/Dockerfile
 ```
 
 3. Push your changes
@@ -54,7 +54,7 @@ docker login --username=<username>
 2. Build the Docker image (may take a while)
 
 ```
-docker build --no-cache -t betagouv/mes-aides-docker:<tag> -f node8-python3.7/Dockerfile .
+TAG=node8-python3.7; docker build --no-cache -t betagouv/mes-aides-docker:$TAG -f $TAG/Dockerfile .
 ```
 
 3. Push the image to Docker Hub
