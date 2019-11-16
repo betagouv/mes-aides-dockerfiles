@@ -25,12 +25,3 @@ jobs:
           command: |
             $LOGIN_CMD
             docker push guillett/mes-aides-docker:${BUILD_VERSION}.test0.2
-      # - deploy:
-      #     name: Push application Docker image
-      #     command: |
-      #       if [ "${CIRCLE_BRANCH}" == "master" ]; then
-      #         login="$(aws ecr get-login)"
-      #         ${login}
-      #         docker tag app "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
-      #         docker push "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
-      #       fi
