@@ -18,12 +18,13 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build --no-cache --tag betagouv/mes-aides-docker:${BUILD_VERSION}.test0.1 --file $BUILD_VERSION/Dockerfile .
+            docker build --no-cache --tag guillett/mes-aides-docker:${BUILD_VERSION}.test0.1 --file $BUILD_VERSION/Dockerfile .
 
       - deploy:
           name: Push application Docker image
           command: |
-            docker push betagouv/mes-aides-docker:${BUILD_VERSION}.test0.1
+            $LOGIN_CMD
+            docker push guillett/mes-aides-docker:${BUILD_VERSION}.test0.1
       # - deploy:
       #     name: Push application Docker image
       #     command: |
