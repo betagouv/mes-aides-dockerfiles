@@ -27,7 +27,7 @@ mkdir node8-python3.7
 2. Generate a `Dockerfile` in this folder
 
 ```
-FOLDER=node8-python3.7-cy LINUX_VERSION=buster NODE_VERSION=8.16.1 PYTHON_VERSION=3.7.3; mkdir $FOLDER && bin/generate.sh > node8-python3.7-cy/Dockerfile
+FOLDER=node8-python3.7-cy LINUX_VERSION=buster NODE_VERSION=8.16.1 PYTHON_VERSION=3.7.3; mkdir $FOLDER && bin/generate.sh > $FOLDER/Dockerfile
 ```
 
 3. Push your changes
