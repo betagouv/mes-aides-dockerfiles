@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build --no-cache --tag betagouv/mes-aides-docker:node8-python3.7-cypress3.0 --file node8-python3.7-cypress3.0/Dockerfile .
+            docker build --no-cache --tag betagouv/mes-aides-docker:node8-python3.7-cy --file node8-python3.7-cy/Dockerfile .
       # - run:
       #     name: Save Docker image layer cache
       #     command: |
