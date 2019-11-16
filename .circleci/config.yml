@@ -5,39 +5,20 @@ jobs:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
+    environment:
+      BUILD_VERSION: node8-python3.7-cy
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Install dependencies
           command: |
-            apk add --no-cache \
-              py-pip=9.0.0-r1
-            pip install \
-              docker-compose==1.12.0
-      - restore_cache:
-          keys:
-            - v1-{{ .Branch }}
-          paths:
-            - /caches/app.tar
-      - run:
-          name: Load Docker image layer cache
-          command: |
-            set +o pipefail
-            docker load -i /caches/app.tar | true
+            apk add --no-cache py-pip=9.0.0-r1
+            pip install docker-compose==1.12.0
       - run:
           name: Build application Docker image
           command: |
-            docker build --no-cache --tag betagouv/mes-aides-docker:node8-python3.7-cy --file node8-python3.7-cy/Dockerfile .
-      # - run:
-      #     name: Save Docker image layer cache
-      #     command: |
-      #       mkdir -p /caches
-      #       docker save -o /caches/app.tar app
-      - save_cache:
-          key: v1-{{ .Branch }}-{{ epoch }}
-          paths:
-            - /caches/app.tar
+            docker build --no-cache --tag betagouv/mes-aides-docker:$BUILD_VERSION --file $BUILD_VERSION/Dockerfile .
       # - deploy:
       #     name: Push application Docker image
       #     command: |
