@@ -1,30 +1,13 @@
-FROM buildpack-deps:buster
+FROM node:16-buster-slim
 
-ENV NODE_VERSION=v16.13.1
 ENV PYTHON_VERSION=3.7.10
 
-# install Node
-RUN wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION.tar.gz \ 
-    && tar -xzvf node-$NODE_VERSION.tar.gz \ 
-    && rm node-$NODE_VERSION.tar.gz \ 
-    && cd node-$NODE_VERSION \ 
-    && ./configure \ 
-    && make -j4 \ 
-    && make install \ 
-    && cd .. \ 
-    && rm -r node-$NODE_VERSION
-
-# install Python
-RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz \ 
-    && tar xzf Python-$PYTHON_VERSION.tgz \ 
-    && rm Python-$PYTHON_VERSION.tgz \ 
-    && cd Python-$PYTHON_VERSION \ 
-    && ./configure \ 
-    && make install
-
-# Install dependencies and cypress prerequisites cf. https://docs.cypress.io/guides/guides/continuous-integration.html#Advanced-setup
+# Install package and cypress prerequisites cf. https://docs.cypress.io/guides/guides/continuous-integration.html#Advanced-setup
 RUN apt-get update \
     && apt-get install -y \ 
+        build-essential \ 
+        wget \ 
+        curl \ 
         lsb-release \ 
         unzip \ 
         libgtk2.0-0 \ 
@@ -38,6 +21,14 @@ RUN apt-get update \
         libxtst6 \ 
         xauth \ 
         xvfb
+
+# install Python
+RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz \ 
+    && tar xzf Python-$PYTHON_VERSION.tgz \ 
+    && rm Python-$PYTHON_VERSION.tgz \ 
+    && cd Python-$PYTHON_VERSION \ 
+    && ./configure \ 
+    && make install
 
 # Set display for Xvfb
 ENV DISPLAY :99
