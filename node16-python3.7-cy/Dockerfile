@@ -1,13 +1,10 @@
-FROM node:16-buster-slim
+FROM node:16-buster
 
 ENV PYTHON_VERSION=3.7.10
 
 # Install package and cypress prerequisites cf. https://docs.cypress.io/guides/guides/continuous-integration.html#Advanced-setup
 RUN apt-get update \
     && apt-get install -y \ 
-        build-essential \ 
-        wget \ 
-        curl \ 
         lsb-release \ 
         unzip \ 
         libgtk2.0-0 \ 
